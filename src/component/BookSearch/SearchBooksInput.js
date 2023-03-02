@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 
 class SearchBookInput extends Component {
-    state = {
-        value: "",
-    };
+    constructor(){
+        super();
+        this.state = {
+            value: "",
+        };
+    }
     handleChange = (event) => {
         const val = event.target.value;
         this.setState({ value: val }, () => {

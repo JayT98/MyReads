@@ -1,23 +1,25 @@
 import "./App.css";
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { debounce } from "throttle-debounce";
 import * as BooksAPI from "./BooksAPI";
 import BookList from "./component/BookList/BookList";
 import BookSearch from "./component/BookSearch/BookSearch"
 
 class BooksApp extends Component {
-  bookshelves = [
-    { key: "currentlyReading", name: "Currently Reading" },
-    { key: "wantToRead", name: "Want to Read" },
-    { key: "read", name: "Have Read" },
-  ];
-  
-  state = {
-    myBooks: [],
-    searchBooks: [],
-  };
-
+  constructor(){
+    super();
+    this.bookshelves = [
+      { key: "currentlyReading", name: "Currently Reading" },
+      { key: "wantToRead", name: "Want to Read" },
+      { key: "read", name: "Have Read" },
+    ];
+    
+    this.state = {
+      myBooks: [],
+      searchBooks: [],
+    };
+  }
   componentDidMount = () => {
     BooksAPI.getAll().then((books) => {
       this.setState({ myBooks: books });
