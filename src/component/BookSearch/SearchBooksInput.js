@@ -1,32 +1,26 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-class SearchBookInput extends Component {
-    constructor(){
-        super();
-        this.state = {
-            value: "",
-        };
+const SearchBookInput = (props) => {
+    const [value, setValue] = useState("");
+
+    const handleChange = (event) => {
+        event.preventDefault();
+        setValue(event.target.value);
+        props.onSearch(event.target.value);
     }
-    handleChange = (event) => {
-        const val = event.target.value;
-        this.setState({ value: val }, () => {
-        this.props.onSearch(val);
-    });
-};
 
-    render() {
-        return (
+    return (
         <div className="search-books-input-wrapper">
             <input
                 type="text"
-                value={this.state.value}
+                value= {value}
                 placeholder="Search by title, author, or ISBN"
-                onChange={this.handleChange}
+                onChange={handleChange}
                 autoFocus
             />
         </div>
-        );
-    }
+    );
 }
+
 
 export default SearchBookInput;
